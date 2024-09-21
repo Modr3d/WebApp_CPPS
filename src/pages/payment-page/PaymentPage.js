@@ -2,9 +2,12 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import payment from "../../assets/payment.png"
 import Qr_code from "../../assets/Qr_code.png"
+import { useNavigate } from "react-router-dom";
 
 
 function PaymentPage() {
+    const navigate = useNavigate();
+
     const [isLangOpen, setIsLangOpen] = useState(false)
     const [language, setLanguage] = useState('TH'); // Initial state for language is TH
 
@@ -12,6 +15,10 @@ function PaymentPage() {
         setLanguage(lang);
         setIsLangOpen(false); // Close the dropdown after selecting
     };
+
+    const handlePaying = () => {
+        navigate("/paying");
+    }
     return (
         <div>
             <div className=" p-4">
@@ -68,7 +75,7 @@ function PaymentPage() {
                         โปรดเลือกช่องทางการชำระเงิน
                     </h1>
                     <div className=" flex space-x-4 w-full justify-center">
-                        <button className=" flex justify-center items-center border-[0.5px] border-gray-300 rounded-[20px] w-40 h-14 p-2 space-x-2">
+                        <button onClick={handlePaying} className=" flex justify-center items-center border-[0.5px] border-gray-300 rounded-[20px] w-40 h-14 p-2 space-x-2">
                             <img src={Qr_code} alt="qr" className="w-8 h-8" />
                             <p className=" text-sm font-light">QR Code</p>
                         </button>
@@ -78,7 +85,7 @@ function PaymentPage() {
                         </button>
                     </div>
                     <div className=" flex space-x-4 w-full justify-center">
-                        <button className=" flex justify-center items-center border-[0.5px] border-gray-300 rounded-[20px] w-40 h-14 p-2 space-x-2">
+                        <button onClick={handlePaying} className=" flex justify-center items-center border-[0.5px] border-gray-300 rounded-[20px] w-40 h-14 p-2 space-x-2">
                             <img src={Qr_code} alt="qr" className="w-8 h-8" />
                             <p className=" text-sm font-light">QR Code</p>
                         </button>
@@ -88,7 +95,7 @@ function PaymentPage() {
                         </button>
                     </div>
                     <div className=" flex space-x-4 w-full justify-center">
-                        <button className=" flex justify-center items-center border-[0.5px] border-gray-300 rounded-[20px] w-40 h-14 p-2 space-x-2">
+                        <button onClick={handlePaying} className=" flex justify-center items-center border-[0.5px] border-gray-300 rounded-[20px] w-40 h-14 p-2 space-x-2">
                             <img src={Qr_code} alt="qr" className="w-8 h-8" />
                             <p className=" text-sm font-light">QR Code</p>
                         </button>

@@ -2,19 +2,24 @@ import { ArrowDownIcon, ArrowDownTrayIcon, ChevronDownIcon, ShareIcon } from "@h
 import React, { useState, useEffect } from "react";
 import ThaiQR from "../../assets/ThaiQR.png"
 import PromptPay from "../../assets/PromptPay.png"
+import { useNavigate } from "react-router-dom";
 
 
 function PayingPage() {
+    const navigate = useNavigate();
     const [isLangOpen, setIsLangOpen] = useState(false);
-    const [language, setLanguage] = useState('TH'); // Initial state for language is TH
+    const [language, setLanguage] = useState('TH');
 
     const handleLanguageChange = (lang) => {
         setLanguage(lang);
-        setIsLangOpen(false); // Close the dropdown after selecting
+        setIsLangOpen(false);
     };
 
-    // กำหนดเวลาเริ่มต้น (14:32 คือ 14 นาที 32 วินาที)
-    const initialTime = 14 * 60 + 32; // แปลงเป็นวินาที
+    const handleReceipt = () => {
+        navigate("/receipt");
+    }
+
+    const initialTime = 14 * 60 + 32;
     const [timeLeft, setTimeLeft] = useState(initialTime);
 
     useEffect(() => {
@@ -23,12 +28,10 @@ function PayingPage() {
                 setTimeLeft((prevTime) => prevTime - 1);
             }, 1000);
 
-            // Clear interval when component unmounts or timeLeft reaches 0
             return () => clearInterval(timer);
         }
     }, [timeLeft]);
 
-    // แปลงเวลาที่เหลือจากวินาทีเป็นนาที:วินาที
     const formatTime = () => {
         const minutes = Math.floor(timeLeft / 60);
         const seconds = timeLeft % 60;
@@ -114,7 +117,7 @@ function PayingPage() {
 
             </div>
             <div className=" flex flex-col justify-center items-end space-y-4 w-full pt-6 pb-6 absolute bottom-0 p-4 border-t-[0.5px] border-gray-300 " style={{ boxShadow: '0 -2px 6px rgba(209, 213, 219, 1)' }}>
-                <button className=" w-full flex justify-center items-center bg-[#007AFF] text-white p-3 rounded-[20px] shadow-md font-medium text-md">
+                <button onClick={handleReceipt} className=" w-full flex justify-center items-center bg-[#007AFF] text-white p-3 rounded-[20px] shadow-md font-medium text-md">
                     ตรวจสอบ
                 </button>
             </div>

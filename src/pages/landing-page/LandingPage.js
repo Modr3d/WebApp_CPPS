@@ -1,15 +1,23 @@
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import React, { useState } from "react";
 import parking from "../../assets/parking.png"
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
+    const navigate = useNavigate();
+
     const [isLangOpen, setIsLangOpen] = useState(false)
-    const [language, setLanguage] = useState('TH'); // Initial state for language is TH
+    const [language, setLanguage] = useState('TH');
 
     const handleLanguageChange = (lang) => {
         setLanguage(lang);
-        setIsLangOpen(false); // Close the dropdown after selecting
+        setIsLangOpen(false);
     };
+
+    const handlePayment = () => {
+        navigate("/payment");
+    }
+
     return (
         <div>
             <div className=" p-4">
@@ -95,7 +103,7 @@ function LandingPage() {
             </div>
 
             <div className=" flex flex-col justify-center items-end space-y-4 w-full pt-6 pb-6 absolute bottom-0 p-4 border-t-[0.5px] border-gray-300 " style={{ boxShadow: '0 -2px 6px rgba(209, 213, 219, 1)' }}>
-                <button className=" w-full flex justify-center items-center bg-[#007AFF] text-white p-3 rounded-[20px] shadow-md font-medium text-md">
+                <button onClick={handlePayment} className=" w-full flex justify-center items-center bg-[#007AFF] text-white p-3 rounded-[20px] shadow-md font-medium text-md">
                     ชำระเงิน
                 </button>
                 <button
