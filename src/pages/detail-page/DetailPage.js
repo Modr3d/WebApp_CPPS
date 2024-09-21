@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./DetailPage.css";
@@ -8,9 +8,22 @@ function DetailPage() {
     AOS.init({ duration: 1000 });
   }, []);
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+
   const rows = 10;
   const columns = 8;
-  
+
+  const handleRowClick = (rowIndex) => {
+    setSelectedRow(rowIndex);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setSelectedRow(null);
+  };
+
   return (
     <div className="detail-page">
       <div className="main-container">
@@ -222,7 +235,10 @@ function DetailPage() {
                   </thead>
                   <tbody>
                     {Array.from({ length: rows }).map((_, rowIndex) => (
-                      <tr key={rowIndex}>
+                      <tr
+                        key={rowIndex}
+                        onClick={() => handleRowClick(rowIndex)}
+                      >
                         {Array.from({ length: columns }).map((_, colIndex) => (
                           <td key={colIndex}>
                             R {rowIndex + 1}, C {colIndex + 1}
@@ -235,6 +251,59 @@ function DetailPage() {
               </div>
             </div>
           </div>
+
+          {modalVisible && (
+            <div className="modal">
+              <div className="modal-content">
+                <span className="close" onClick={closeModal}>
+                  &times;
+                </span>
+                <h2>Details for Row {selectedRow + 1}</h2>
+                <div className="modal-container">
+                  <div className="modal-left">
+                    <h1>วันศุกร์ ที่ 6 สิงหาคม 2024 เวลา 14:32:04</h1>
+                    <img
+                      className="mt-3"
+                      src="/images/car_pic_example.png"
+                      alt="car-pic"
+                    />
+                    <p className="mt-3 border-2 rounded-md p-1 bg-gray-50">
+                      วล 3670
+                    </p>
+                    <p className="mt-3 border-2 rounded-md p-1 bg-gray-50">
+                      วันที่ 02/08/2024 17:00:00
+                    </p>
+                  </div>
+                  <div className="modal-right">
+                    <p>ค่าบริการ (บาท)</p>
+                    <h1> 90 </h1>
+                    <p>ส่วนลด</p>
+                    <h1>รายละเอียด</h1>
+                    <p class="flex justify-between">
+                      เวลาเข้า: <span>17:00:00</span>
+                    </p>
+                    <p>เวลาออก:</p>
+                    <p class="flex justify-between">
+                      เวลาออก: <span>20:45:45</span>
+                    </p>
+                    <p class="flex justify-between">
+                      ระยะเวลาการจอด: <span>3 ชั่วโมง 45 นาที</span>
+                    </p>
+                    <p class="flex justify-between">
+                      สิทธิ์จอดฟรี: <span>1 ชั่วโมง 0 นาที</span>
+                    </p>
+                    <p class="flex justify-between">
+                      ค่าบริการจอดรถ: <span>90 บาท</span>
+                    </p>
+                    <p class="flex justify-between">
+                      ชำระแล้ว: <span>0 บาท</span>
+                    </p>
+                    <button>ยืนยัน</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
