@@ -1,9 +1,11 @@
+
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // ตรวจสอบให้แน่ใจว่า path ถูกต้อง
+    "./src/**/*.{html,js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {},
   },
   plugins: [],
+
 };
