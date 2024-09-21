@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import "./DetailPage.css";
-import HamburgerMenu from "./HamburgerMenu";
 
 function DetailPage() {
   useEffect(() => {
