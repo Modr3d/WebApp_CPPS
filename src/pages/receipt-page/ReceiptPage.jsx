@@ -13,43 +13,7 @@ function ReceiptPage() {
     return (
         <div>
             <div className=" p-4">
-                <nav className=" w-full flex justify-end h-full mb-4">
-                    <button className=" flex items-center bg-[#D9EBFF] text-black p-2 rounded-[20px] font-medium text-sm relative"
-                        onClick={() => setIsLangOpen(!isLangOpen)}>
-                        <img
-                            src={
-                                language === 'TH'
-                                    ? 'https://cdn.britannica.com/38/4038-050-BDDBA6AB/Flag-Thailand.jpg'
-                                    : 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Flag_of_the_United_States_%28DoS_ECA_Color_Standard%29.svg'
-                            }
-                            alt="flag"
-                            className="w-4 h-4 mr-1 rounded-3xl object-cover"
-                        />
-                        {language === 'TH' ? 'TH' : 'EN'}
-                        <ChevronDownIcon
-                            className={`ml-1 w-4 h-4 rounded-xl border-12 ${isLangOpen ? 'rotate-180' : ''
-                                }`}
-                        />
-                        {isLangOpen && (
-                            <div className="absolute bottom-[-90px] border-[0.5px] border-gray-300 right-0 w-40 bg-white rounded-xl shadow-md flex flex-col justify-center p-3 space-y-2">
-                                <p
-                                    className=" w-full flex items-start text-sm font-medium cursor-pointer"
-                                    onClick={() => handleLanguageChange('TH')}
-                                >
-                                    ภาษาไทย
-                                </p>
-                                <div className=" border-t-[0.5px] border-gray-300 w-full"></div>
-                                <p
-                                    className=" w-full flex items-start text-sm font-medium cursor-pointer"
-                                    onClick={() => handleLanguageChange('EN')}
-                                >
-                                    ภาษาอังกฤษ
-                                </p>
-                            </div>
-                        )}
-
-                    </button>
-                </nav>
+                
                 <div className=" p-6 border-gray-300 border-[0.5px] rounded-[20px] shadow-md flex justify-center items-center mb-8 space-x-10">
                     <img src={receipt} alt="receipt" className="w-14 h-14" />
                     <div className=" flex flex-col justify-center items-center text-lg ">
@@ -99,12 +63,6 @@ function ReceiptPage() {
                             <p className=" mt-2 text-sm">บันทึก QR</p>
                         </div>
                 </div>
-            </div>
-
-            <div className=" flex flex-col justify-center items-end space-y-4 w-full pt-6 pb-6 absolute bottom-0 p-4 border-t-[0.5px] border-gray-300 " style={{ boxShadow: '0 -2px 6px rgba(209, 213, 219, 1)' }}>
-                <button className=" w-full flex justify-center items-center bg-[#007AFF] text-white p-3 rounded-[20px] shadow-md font-medium text-md">
-                    เสร็จสิ้น
-                </button>
             </div>
         </div>
     )

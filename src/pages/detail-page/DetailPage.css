@@ -26,7 +26,6 @@ body {
 .header {
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
   gap: 1.5rem;
   width: 100%;
 }
@@ -97,7 +96,7 @@ img {
 }
 
 .info-table {
-  width: 90%;
+  width: 100%;
   border-collapse: collapse;
   color: black;
 }
